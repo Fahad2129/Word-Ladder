@@ -1,7 +1,7 @@
 # 🔤 Word Ladder Search
-AI Assignment #1 — IBA Karachi, Spring 2026
+Fahad Azfar 31659 AI Assignment #1 — IBA Karachi, Spring 2026
 
-Search for semantic paths between words using GloVe word embeddings and classic AI search algorithms.
+Search for semantic paths between words using glove word embeddings and classic AI search algorithms.
 
 ---
 
@@ -42,7 +42,7 @@ http://localhost:8501
 |------|-------------|
 | `app.py` | Streamlit GUI |
 | `word_ladder_search.py` | Search algorithms (BFS, DFS, UCS, Greedy, A*) |
-| `glove_100d_20000.txt` | GloVe 100-d word embeddings (20,000 words) |
+| `glove_100d_20000.txt` | glove 100-d word embeddings (20,000 words) |
 
 ---
 
@@ -75,4 +75,5 @@ http://localhost:8501
 - Python
 - NumPy
 - Streamlit
-- GloVe Embeddings (Stanford NLP)
+- glove Embeddings (Stanford NLP)
+
