@@ -9,9 +9,6 @@ from word_ladder_search import (
     load_embeddings, WordLadderEnv, run_search, ALGORITHMS
 )
 
-# ─────────────────────────────────────────────
-# PAGE CONFIG
-# ─────────────────────────────────────────────
 st.set_page_config(
     page_title="Word Ladder Search",
     page_icon="🔤",
@@ -128,12 +125,9 @@ h1, h2, h3 {
 """, unsafe_allow_html=True)
 
 
-# ─────────────────────────────────────────────
-# LOAD EMBEDDINGS (cached)
-# ─────────────────────────────────────────────
 GLOVE_FILE = os.path.join(os.path.dirname(__file__), "glove_100d_20000.txt")
 
-@st.cache_resource(show_spinner="Loading GloVe embeddings…")
+@st.cache_resource(show_spinner="Loading glove embeddings…")
 def get_env(k: int):
     w2i, mat, i2w = load_embeddings(GLOVE_FILE)
     env = WordLadderEnv(w2i, mat, i2w)
@@ -141,22 +135,17 @@ def get_env(k: int):
     return env
 
 
-# ─────────────────────────────────────────────
-# HEADER
-# ─────────────────────────────────────────────
+
 st.markdown("## 🔤 Word Ladder Search")
 st.markdown(
     "<p style='color:#6b6b8a;font-size:0.95rem;margin-top:-12px;'>"
-    "Semantic graph search using GloVe 100-d embeddings &nbsp;·&nbsp; "
+    "Semantic graph search using glove 100-d embeddings &nbsp;·&nbsp; "
     "Fahad Azfar · AI Assignment #1</p>",
     unsafe_allow_html=True
 )
 st.divider()
 
 
-# ─────────────────────────────────────────────
-# SIDEBAR / CONTROLS
-# ─────────────────────────────────────────────
 with st.sidebar:
     st.markdown("### ⚙️ Search Settings")
 
@@ -190,9 +179,6 @@ with st.sidebar:
 """)
 
 
-# ─────────────────────────────────────────────
-# MAIN PANEL
-# ─────────────────────────────────────────────
 env = get_env(k)
 
 if run_btn:
@@ -302,7 +288,7 @@ else:
         </ol>
         <hr style="border-color:#2a2a3a;margin:20px 0;">
         <p style="color:#6b6b8a;font-size:0.85rem;margin:0;">
-            Built on GloVe 100-d embeddings · 20 000 word vocabulary<br>
+            Built on glove 100-d embeddings · 20 000 word vocabulary<br>
             Heuristic: h(n) = 1 − cosine_similarity(n, goal)
         </p>
     </div>
