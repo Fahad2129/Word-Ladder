@@ -10,10 +10,7 @@ import time
 from collections import deque
 from typing import Optional
 
-
-# ─────────────────────────────────────────────
-# 1. EMBEDDING LOADER
-# ─────────────────────────────────────────────
+# EMBEDDING LOADER
 
 def load_embeddings(filepath: str) -> tuple[dict, np.ndarray, list]:
     """
@@ -43,9 +40,7 @@ def load_embeddings(filepath: str) -> tuple[dict, np.ndarray, list]:
     return word_to_idx, matrix, words
 
 
-# ─────────────────────────────────────────────
-# 2. SEARCH ENVIRONMENT
-# ─────────────────────────────────────────────
+# SEARCH ENVIRONMENT
 
 class WordLadderEnv:
     """
@@ -101,7 +96,7 @@ class WordLadderEnv:
         """
         return 1.0 - self.cosine_similarity(current, goal)
 
-    # ── neighbours ───────────────────────────
+    #  neighbours 
 
     def neighbours(self, word: str) -> list[tuple[str, float]]:
         """
@@ -129,9 +124,8 @@ class WordLadderEnv:
         return word in self.word_to_idx
 
 
-# ─────────────────────────────────────────────
-# 3. PATH RECONSTRUCTION
-# ─────────────────────────────────────────────
+# PATH RECONSTRUCTION
+
 
 def reconstruct_path(parent: dict, goal: str) -> list[str]:
     path = []
@@ -142,9 +136,7 @@ def reconstruct_path(parent: dict, goal: str) -> list[str]:
     return path[::-1]
 
 
-# ─────────────────────────────────────────────
-# 4. SEARCH ALGORITHMS
-# ─────────────────────────────────────────────
+# Search Algorthms
 
 SearchResult = dict   # keys: path, nodes_expanded, time_taken, found
 
@@ -355,9 +347,8 @@ def astar(env: WordLadderEnv, start: str, goal: str) -> SearchResult:
             "time_taken": time.perf_counter() - t0, "found": False}
 
 
-# ─────────────────────────────────────────────
 # 5. DISPATCH
-# ─────────────────────────────────────────────
+
 
 ALGORITHMS = {
     "BFS": bfs,
@@ -373,9 +364,6 @@ def run_search(env: WordLadderEnv, algo: str,
     return ALGORITHMS[algo](env, start, goal)
 
 
-# ─────────────────────────────────────────────
-# 6. COMMAND-LINE DEMO (optional)
-# ─────────────────────────────────────────────
 
 if __name__ == "__main__":
     import sys, os
